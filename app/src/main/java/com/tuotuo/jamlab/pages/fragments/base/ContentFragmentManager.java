@@ -34,13 +34,18 @@ public class ContentFragmentManager {
         mContentFragmentFactory = contentFragmentFactory;
     }
 
+
+    public void showFragment(int type, Bundle bundle) {
+        showFragment(type, bundle, true);
+    }
+
     /**
      * 显示类型为type的fragment
      * 可增加一个参数来控制上一个显示的fragment是否入栈
      *
      * @param type fragment类型
      */
-    public void showFragment(int type, Bundle bundle) {
+    public void showFragment(int type, Bundle bundle, boolean pushLastPageStack) {
         ContentFragment fragment = null;
         if (mContentFragmentFactory != null)
             fragment = mContentFragmentFactory.createFragment(type);
@@ -60,8 +65,9 @@ public class ContentFragmentManager {
             }
         }
 
-        if (mCurrentFragmentInfo != null)
+        if (mCurrentFragmentInfo != null && pushLastPageStack) {
             push(mCurrentFragmentInfo);
+        }
         replaceFragment(fragment, type, false);
 
         mCurrentFragmentInfo = new FragmentInfo(fragment, type);
