@@ -1,4 +1,4 @@
-package com.tuotuo.jamlab.pages.fragments.base;
+package com.tuotuo.jamlab.pages.base;
 
 /**
  * Created by liuzhenhui on 2016/10/27.

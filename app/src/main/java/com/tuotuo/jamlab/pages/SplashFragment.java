@@ -1,11 +1,11 @@
-package com.tuotuo.jamlab.pages.fragments;
+package com.tuotuo.jamlab.pages;
 
 
 import android.os.Handler;
 
 import com.tuotuo.jamlab.R;
-import com.tuotuo.jamlab.pages.fragments.base.ContentFragment;
-import com.tuotuo.jamlab.pages.fragments.base.JLFragmentManager;
+import com.tuotuo.jamlab.pages.base.ContentFragment;
+import com.tuotuo.jamlab.pages.base.JLFragmentManager;
 
 
 /**

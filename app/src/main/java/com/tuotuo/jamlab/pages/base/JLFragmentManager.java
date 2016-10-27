@@ -1,10 +1,11 @@
-package com.tuotuo.jamlab.pages.fragments.base;
+package com.tuotuo.jamlab.pages.base;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
-import com.tuotuo.jamlab.pages.fragments.HomeFragment;
-import com.tuotuo.jamlab.pages.fragments.SplashFragment;
+import com.tuotuo.jamlab.pages.HomeFragment;
+import com.tuotuo.jamlab.pages.SplashFragment;
+import com.tuotuo.jamlab.pages.testnetwork.TestFragment;
 
 /**
  * Created by liuzhenhui on 2016/10/27.
