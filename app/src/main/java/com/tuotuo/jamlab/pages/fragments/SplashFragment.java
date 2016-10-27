@@ -1,12 +1,12 @@
 package com.tuotuo.jamlab.pages.fragments;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+
+import android.os.Handler;
 
 import com.tuotuo.jamlab.R;
 import com.tuotuo.jamlab.pages.fragments.base.ContentFragment;
 import com.tuotuo.jamlab.pages.fragments.base.JLFragmentManager;
+
 
 /**
  * Created by liuzhenhui on 2016/10/27.
@@ -14,7 +14,9 @@ import com.tuotuo.jamlab.pages.fragments.base.JLFragmentManager;
 public class SplashFragment extends ContentFragment {
     public static final String TAG = SplashFragment.class.getSimpleName();
 
-    private Button btnGoHome;
+    public static final int GO_HOME_DELAY = 700;
+
+    private Handler mHandler;
 
     @Override
     protected int getLayoutId() {
@@ -23,24 +25,19 @@ public class SplashFragment extends ContentFragment {
 
     @Override
     protected void onInitView() {
-        btnGoHome = (Button) findViewById(R.id.btn_splash_goto);
-        btnGoHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putString(HomeFragment.ATTRIBUTE_CHANNEL, "hello");
-                getJLFragmentManager().showFragment(JLFragmentManager.TYPE_HOME, bundle);
-            }
-        });
-
+        mHandler = new Handler();
     }
+
+    Runnable goHomeRunnable = new Runnable() {
+        @Override
+        public void run() {
+            getJLFragmentManager().showFragment(JLFragmentManager.TYPE_HOME, null,false);
+        }
+    };
 
     @Override
     public void onResume() {
         super.onResume();
-        if (mBackBundle != null) {
-            String name = mBackBundle.getString(HomeFragment.ATTRIBUTE_CHANNEL);
-            btnGoHome.setText(name);
-        }
+        mHandler.postDelayed(goHomeRunnable, GO_HOME_DELAY);
     }
 }

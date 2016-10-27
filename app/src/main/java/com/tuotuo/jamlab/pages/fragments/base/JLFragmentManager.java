@@ -17,6 +17,7 @@ public class JLFragmentManager extends ContentFragmentManager implements
     public final static int TYPE_NONE = 0x0000;
     /* 1x: 页面 */
     public final static int TYPE_HOME = 0x0011;
+    public final static int TYPE_TEST = 0x0012;
     /* 2x: 其他页面 */
     public final static int TYPE_SPLASH = 0x0041;// splash
 
@@ -43,6 +44,13 @@ public class JLFragmentManager extends ContentFragmentManager implements
                 fragment = new SplashFragment();
                 break;
 
+            case TYPE_TEST:
+                fragment = new TestFragment();
+                break;
+
+            default:
+                fragment = new TestFragment();
+                break;
         }
         return fragment;
     }
@@ -82,7 +90,6 @@ public class JLFragmentManager extends ContentFragmentManager implements
 
     /**
      * 回退到type类型的fragment
-     *
      */
     public void backTo(int type, Bundle bundle) {
         while (mFragmentInfoStack.size() > 0) {
@@ -97,7 +104,6 @@ public class JLFragmentManager extends ContentFragmentManager implements
 
     /**
      * 清理HOME页之后压栈的所有fragment，仅用于导航过程页(真实导航)启动前调用。
-     *
      */
     public void removeFragmentTo(int type) {
         int index = getIndexFromLast(type);

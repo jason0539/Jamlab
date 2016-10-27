@@ -14,6 +14,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by liuzhenhui on 2016/10/27.
  * onAttach-->onCreate-->onCreateView-->onActivityCreated-->onStart-->onResume-->onPause-->onStop-->onDestroyView-->onDestroy-->onDetach
@@ -67,6 +69,7 @@ public abstract class ContentFragment extends BaseFragment {
             mViewCreated = true;
         } else {
             mContentView = inflater.inflate(getLayoutId(), mContainer, false);
+            ButterKnife.bind(this, mContentView);
             mViewCreated = true;
         }
         if (mContentView != null) {

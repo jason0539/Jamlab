@@ -1,11 +1,13 @@
 package com.tuotuo.jamlab.pages.fragments;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
+import android.widget.Button;
 
 import com.tuotuo.jamlab.R;
 import com.tuotuo.jamlab.pages.fragments.base.ContentFragment;
+import com.tuotuo.jamlab.pages.fragments.base.JLFragmentManager;
+
+import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by liuzhenhui on 2016/10/27.
@@ -15,7 +17,10 @@ public class HomeFragment extends ContentFragment {
 
     public static final String ATTRIBUTE_CHANNEL = "ATTRIBUTE_CHANNEL";
 
-    private TextView tvShow;
+    @BindView(R.id.btn_home_network)
+    Button btnNetwork;
+    @BindView(R.id.btn_home_other)
+    Button btnOther;
 
     @Override
     protected int getLayoutId() {
@@ -24,18 +29,16 @@ public class HomeFragment extends ContentFragment {
 
     @Override
     protected void onInitView() {
-        tvShow = (TextView) findViewById(R.id.tv_home_show);
-        if (mShowBundle != null) {
-            String string = mShowBundle.getString(ATTRIBUTE_CHANNEL);
-            tvShow.setText(string);
-        }
-        tvShow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putString(ATTRIBUTE_CHANNEL, "success");
-                getJLFragmentManager().back(bundle);
-            }
-        });
+
     }
+
+    @OnClick(R.id.btn_home_network)
+    public void goTestPage() {
+        getJLFragmentManager().showFragment(JLFragmentManager.TYPE_TEST);
+    }
+
+    @OnClick(R.id.btn_home_other)
+    public void goOtherPage() {
+    }
+
 }
