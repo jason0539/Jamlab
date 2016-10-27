@@ -25,7 +25,7 @@ public class BaseFragment extends Fragment {
 
     public static void initBeforeAll(MainActivity activity, JLFragmentManager fragmentManager) {
         mActivity = activity;
-        mContext = mActivity.getApplication();
+        mContext = mActivity.getApplicationContext();
         jlFragmentManager = fragmentManager;
         mInflater = mActivity.getLayoutInflater();
     }

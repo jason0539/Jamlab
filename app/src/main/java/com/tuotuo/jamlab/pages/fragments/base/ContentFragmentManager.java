@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 
 import com.tuotuo.jamlab.R;
 
@@ -31,11 +30,7 @@ public class ContentFragmentManager {
         mCurrentFragmentInfo = null;
     }
 
-    /**
-     * 设置fragment工厂
-     */
-    public void setFragmentFactory(
-            IContentFragmentFactory contentFragmentFactory) {
+    public void setFragmentFactory(IContentFragmentFactory contentFragmentFactory) {
         mContentFragmentFactory = contentFragmentFactory;
     }
 
@@ -111,6 +106,10 @@ public class ContentFragmentManager {
             ft.replace(R.id.frame_main_content, fragment);
         }
         ft.commitAllowingStateLoss();
+    }
+
+    public void back() {
+        back(null);
     }
 
     /**
