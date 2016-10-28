@@ -12,8 +12,9 @@
         android:text="网络模块测试"/>
 
     <Button
-        android:id="@+id/btn_home_other"
+        android:id="@+id/btn_home_rxjava"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="其他"/>
+        android:text="RxJava Demo"/>
+
 </LinearLayout>

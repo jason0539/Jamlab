@@ -18,19 +18,19 @@ import butterknife.OnClick;
 /**
  * Created by liuzhenhui on 2016/10/27.
  */
-public class TestFragment extends ContentFragment {
-    public static final String TAG = TestFragment.class.getSimpleName();
+public class RxRetrofitFragment extends ContentFragment {
+    public static final String TAG = RxRetrofitFragment.class.getSimpleName();
 
-    @BindView(R.id.btn_test_click)
+    @BindView(R.id.btn_rxretrofit_click)
     Button btnClick;
-    @BindView(R.id.tv_test_result)
+    @BindView(R.id.tv_rxretrofit_result)
     TextView tvResult;
 
     private SubscriberOnNextListener getTopMovieOnNext;
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_test;
+        return R.layout.fragment_rxretrofit;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class TestFragment extends ContentFragment {
         };
     }
 
-    @OnClick(R.id.btn_test_click)
+    @OnClick(R.id.btn_rxretrofit_click)
     public void clickTestNet() {
         getMovie();
     }

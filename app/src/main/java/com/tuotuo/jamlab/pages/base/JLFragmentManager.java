@@ -5,7 +5,8 @@ import android.support.v4.app.FragmentActivity;
 
 import com.tuotuo.jamlab.pages.HomeFragment;
 import com.tuotuo.jamlab.pages.SplashFragment;
-import com.tuotuo.jamlab.pages.retrofitdemo.TestFragment;
+import com.tuotuo.jamlab.pages.retrofitdemo.RxRetrofitFragment;
+import com.tuotuo.jamlab.pages.rxdemo.RxJavaDemoFragment;
 
 /**
  * Created by liuzhenhui on 2016/10/27.
@@ -18,9 +19,11 @@ public class JLFragmentManager extends ContentFragmentManager implements
     public final static int TYPE_NONE = 0x0000;
     /* 1x: 页面 */
     public final static int TYPE_HOME = 0x0011;
-    public final static int TYPE_TEST = 0x0012;
     /* 2x: 其他页面 */
     public final static int TYPE_SPLASH = 0x0041;// splash
+    /* 2x: 测试页面 */
+    public final static int TYPE_RXRTROFIT = 0x0021;
+    public static final int TYPE_RXJAVA = 0x0022;
 
     /**
      * 前一个fragment 类型 ，即从哪个fragment跳转过来的
@@ -45,12 +48,16 @@ public class JLFragmentManager extends ContentFragmentManager implements
                 fragment = new SplashFragment();
                 break;
 
-            case TYPE_TEST:
-                fragment = new TestFragment();
+            case TYPE_RXRTROFIT:
+                fragment = new RxRetrofitFragment();
+                break;
+
+            case TYPE_RXJAVA:
+                fragment = new RxJavaDemoFragment();
                 break;
 
             default:
-                fragment = new TestFragment();
+                fragment = new RxRetrofitFragment();
                 break;
         }
         return fragment;
