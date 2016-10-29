@@ -10,5 +10,14 @@
         android:layout_height="wrap_content"
         android:text="打印数组"/>
 
+    <ImageView
+        android:id="@+id/iv_rxjava_appicon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/iv_rxjava_fileimage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
