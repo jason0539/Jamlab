@@ -3,7 +3,7 @@ apply plugin: 'android-apt'
 apply plugin: 'realm-android'
 
 android {
-    compileSdkVersion 19
+    compileSdkVersion 23
     buildToolsVersion "24.0.2"
     defaultConfig {
         applicationId "com.tuotuo.jamlab"
@@ -42,4 +42,8 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.1.0'
     //RxBinding
     compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
+    //leakcannary
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
 }
