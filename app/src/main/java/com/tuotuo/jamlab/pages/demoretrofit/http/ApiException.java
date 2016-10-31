@@ -1,4 +1,4 @@
-package com.tuotuo.jamlab.pages.retrofitdemo.http;
+package com.tuotuo.jamlab.pages.demoretrofit.http;
 
 /**
  * Created by liuzhenhui on 2016/10/27.

@@ -1,4 +1,4 @@
-package com.tuotuo.jamlab.pages.retrofitdemo.entity;
+package com.tuotuo.jamlab.pages.demoretrofit.entity;
 
 import java.util.List;
 

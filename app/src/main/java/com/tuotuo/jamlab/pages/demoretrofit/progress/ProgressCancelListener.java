@@ -1,4 +1,4 @@
-package com.tuotuo.jamlab.pages.retrofitdemo.progress;
+package com.tuotuo.jamlab.pages.demoretrofit.progress;
 
 /**
  * Created by liuzhenhui on 2016/10/27.

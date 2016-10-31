@@ -1,4 +1,4 @@
-package com.tuotuo.jamlab.pages.rxdemo.bean;
+package com.tuotuo.jamlab.pages.demorxjava.bean;
 
 import java.util.ArrayList;
 import java.util.List;

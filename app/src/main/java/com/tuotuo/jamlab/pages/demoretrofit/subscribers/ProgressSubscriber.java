@@ -1,10 +1,10 @@
-package com.tuotuo.jamlab.pages.retrofitdemo.subscribers;
+package com.tuotuo.jamlab.pages.demoretrofit.subscribers;
 
 import android.content.Context;
 import android.widget.Toast;
 
-import com.tuotuo.jamlab.pages.retrofitdemo.progress.ProgressCancelListener;
-import com.tuotuo.jamlab.pages.retrofitdemo.progress.ProgressDialogHandler;
+import com.tuotuo.jamlab.pages.demoretrofit.progress.ProgressCancelListener;
+import com.tuotuo.jamlab.pages.demoretrofit.progress.ProgressDialogHandler;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;

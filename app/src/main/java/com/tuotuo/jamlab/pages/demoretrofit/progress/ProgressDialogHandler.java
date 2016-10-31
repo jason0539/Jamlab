@@ -1,4 +1,4 @@
-package com.tuotuo.jamlab.pages.retrofitdemo.progress;
+package com.tuotuo.jamlab.pages.demoretrofit.progress;
 
 import android.app.ProgressDialog;
 import android.content.Context;

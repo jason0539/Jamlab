@@ -1,7 +1,7 @@
-package com.tuotuo.jamlab.pages.retrofitdemo.http;
+package com.tuotuo.jamlab.pages.demoretrofit.http;
 
-import com.tuotuo.jamlab.pages.retrofitdemo.entity.HttpResult;
-import com.tuotuo.jamlab.pages.retrofitdemo.entity.Subject;
+import com.tuotuo.jamlab.pages.demoretrofit.entity.HttpResult;
+import com.tuotuo.jamlab.pages.demoretrofit.entity.Subject;
 
 import java.util.List;
 

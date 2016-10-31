@@ -1,4 +1,4 @@
-package com.tuotuo.jamlab.pages.rxdemo;
+package com.tuotuo.jamlab.pages.demorxjava;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -12,8 +12,8 @@ import com.tuotuo.jamlab.common.utils.ImageUtils;
 import com.tuotuo.jamlab.common.utils.MLog;
 import com.tuotuo.jamlab.common.utils.MToast;
 import com.tuotuo.jamlab.pages.base.ContentFragment;
-import com.tuotuo.jamlab.pages.rxdemo.bean.Course;
-import com.tuotuo.jamlab.pages.rxdemo.bean.Student;
+import com.tuotuo.jamlab.pages.demorxjava.bean.Course;
+import com.tuotuo.jamlab.pages.demorxjava.bean.Student;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;

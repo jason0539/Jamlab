@@ -1,4 +1,4 @@
-package com.tuotuo.jamlab.pages.retrofitdemo.subscribers;
+package com.tuotuo.jamlab.pages.demoretrofit.subscribers;
 
 /**
  * Created by liuzhenhui on 2016/10/27.

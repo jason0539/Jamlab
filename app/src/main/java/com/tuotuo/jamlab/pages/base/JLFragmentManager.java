@@ -5,8 +5,8 @@ import android.support.v4.app.FragmentActivity;
 
 import com.tuotuo.jamlab.pages.HomeFragment;
 import com.tuotuo.jamlab.pages.SplashFragment;
-import com.tuotuo.jamlab.pages.retrofitdemo.RxRetrofitFragment;
-import com.tuotuo.jamlab.pages.rxdemo.RxJavaDemoFragment;
+import com.tuotuo.jamlab.pages.demoretrofit.RxRetrofitFragment;
+import com.tuotuo.jamlab.pages.demorxjava.RxJavaDemoFragment;
 
 /**
  * Created by liuzhenhui on 2016/10/27.

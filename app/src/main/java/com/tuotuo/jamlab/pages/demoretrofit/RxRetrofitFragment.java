@@ -1,14 +1,14 @@
-package com.tuotuo.jamlab.pages.retrofitdemo;
+package com.tuotuo.jamlab.pages.demoretrofit;
 
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.tuotuo.jamlab.R;
 import com.tuotuo.jamlab.pages.base.ContentFragment;
-import com.tuotuo.jamlab.pages.retrofitdemo.entity.Subject;
-import com.tuotuo.jamlab.pages.retrofitdemo.http.HttpMethods;
-import com.tuotuo.jamlab.pages.retrofitdemo.subscribers.ProgressSubscriber;
-import com.tuotuo.jamlab.pages.retrofitdemo.subscribers.SubscriberOnNextListener;
+import com.tuotuo.jamlab.pages.demoretrofit.entity.Subject;
+import com.tuotuo.jamlab.pages.demoretrofit.http.HttpMethods;
+import com.tuotuo.jamlab.pages.demoretrofit.subscribers.ProgressSubscriber;
+import com.tuotuo.jamlab.pages.demoretrofit.subscribers.SubscriberOnNextListener;
 
 import java.util.List;
 

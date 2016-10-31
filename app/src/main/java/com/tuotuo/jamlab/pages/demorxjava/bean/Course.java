@@ -1,4 +1,4 @@
-package com.tuotuo.jamlab.pages.rxdemo.bean;
+package com.tuotuo.jamlab.pages.demorxjava.bean;
 
 /**
  * Created by liuzhenhui on 2016/10/29.
