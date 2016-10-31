@@ -10,6 +10,12 @@
         android:layout_height="wrap_content"
         android:text="打印数组"/>
 
+    <Button
+        android:id="@+id/btn_rxjava_rxbind"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="RxBind"/>
+
     <ImageView
         android:id="@+id/iv_rxjava_appicon"
         android:layout_width="wrap_content"

@@ -5,13 +5,18 @@ import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.jakewharton.rxbinding.view.RxView;
 import com.tuotuo.jamlab.R;
 import com.tuotuo.jamlab.common.utils.ImageUtils;
 import com.tuotuo.jamlab.common.utils.MLog;
 import com.tuotuo.jamlab.pages.base.ContentFragment;
+import com.tuotuo.jamlab.pages.rxdemo.bean.Course;
+import com.tuotuo.jamlab.pages.rxdemo.bean.Student;
 
 import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -38,6 +43,9 @@ public class RxJavaDemoFragment extends ContentFragment {
     @BindView(R.id.iv_rxjava_fileimage)
     ImageView ivFileImage;
 
+    @BindView(R.id.btn_rxjava_rxbind)
+    Button btnRxBind;
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_rxjava;
@@ -45,12 +53,18 @@ public class RxJavaDemoFragment extends ContentFragment {
 
     @Override
     protected void onInitView() {
-
+        RxView.clicks(btnRxBind)
+                .throttleFirst(500, TimeUnit.MILLISECONDS)
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+                        Toast.makeText(getActivity(),"RxBind",Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     @OnClick(R.id.btn_rxjava_print)
     public void print() {
-
         // 打印数组
         String[] names = new String[4];
         names[0] = "jason";
@@ -106,10 +120,41 @@ public class RxJavaDemoFragment extends ContentFragment {
                 }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<Bitmap>() {
+                    @Override
+                    public void call(Bitmap bitmap) {
+                        ivFileImage.setImageBitmap(bitmap);
+                    }
+                });
+
+        // flatmap
+        Student[] students = new Student[5];
+        students[0] = new Student("s1");
+        students[1] = new Student("s2");
+        students[2] = new Student("s3");
+        students[3] = new Student("s4");
+        students[4] = new Student("s5");
+        Subscriber<Course> courseSubscriber = new Subscriber<Course>() {
             @Override
-            public void call(Bitmap bitmap) {
-                ivFileImage.setImageBitmap(bitmap);
+            public void onCompleted() {
+                MLog.d(MLog.TAG_TEST_RXJAVA, TAG + "->" + "onCompleted ");
             }
-        });
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(Course course) {
+                MLog.d(MLog.TAG_TEST_RXJAVA, TAG + "->" + "onNext course name = " + course.getName());
+            }
+        };
+        Observable.from(students)
+                .flatMap(new Func1<Student, Observable<Course>>() {
+                    @Override
+                    public Observable<Course> call(Student student) {
+                        return Observable.from(student.getCourses());
+                    }
+                }).subscribe(courseSubscriber);
     }
 }
