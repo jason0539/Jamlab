@@ -9,6 +9,7 @@ import com.tuotuo.jamlab.pages.base.JLFragmentManager;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.tuotuo.jamlab.R.id.btn_home_realm;
 import static com.tuotuo.jamlab.R.id.btn_home_rxjava;
 
 /**
@@ -23,6 +24,8 @@ public class HomeFragment extends ContentFragment {
     Button btnNetwork;
     @BindView(R.id.btn_home_rxjava)
     Button btnRxJava;
+    @BindView(btn_home_realm)
+    Button btnRealm;
 
     @Override
     protected int getLayoutId() {
@@ -40,8 +43,13 @@ public class HomeFragment extends ContentFragment {
     }
 
     @OnClick(btn_home_rxjava)
-    public void goRxJava(){
+    public void goRxJava() {
         getJLFragmentManager().showFragment(JLFragmentManager.TYPE_RXJAVA);
+    }
+
+    @OnClick(btn_home_realm)
+    public void goRealm() {
+        getJLFragmentManager().showFragment(JLFragmentManager.TYPE_REALM);
     }
 
 }
