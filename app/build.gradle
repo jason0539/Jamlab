@@ -19,6 +19,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    repositories {
+        maven {
+            url 'https://github.com/uPhyca/stetho-realm/raw/master/maven-repo'
+        }
+    }
 }
 
 dependencies {
@@ -49,4 +54,7 @@ dependencies {
     //stetho
     compile 'com.facebook.stetho:stetho:1.4.1'
     compile 'com.facebook.stetho:stetho-okhttp:1.4.1'
+    //stetho module for realm
+    compile 'com.uphyca:stetho_realm:2.0.0'
+
 }
