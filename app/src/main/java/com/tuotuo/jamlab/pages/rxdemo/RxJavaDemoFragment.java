@@ -5,12 +5,12 @@ import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.tuotuo.jamlab.R;
 import com.tuotuo.jamlab.common.utils.ImageUtils;
 import com.tuotuo.jamlab.common.utils.MLog;
+import com.tuotuo.jamlab.common.utils.MToast;
 import com.tuotuo.jamlab.pages.base.ContentFragment;
 import com.tuotuo.jamlab.pages.rxdemo.bean.Course;
 import com.tuotuo.jamlab.pages.rxdemo.bean.Student;
@@ -58,7 +58,7 @@ public class RxJavaDemoFragment extends ContentFragment {
                 .subscribe(new Action1<Void>() {
                     @Override
                     public void call(Void aVoid) {
-                        Toast.makeText(getActivity(),"RxBind",Toast.LENGTH_SHORT).show();
+                        MToast.show(getActivity(),"RxBind");
                     }
                 });
     }
