@@ -53,13 +53,13 @@ public class BaseFragment extends Fragment {
 
     @Override
     public void onAttach(Activity activity) {
-        MLog.d(MLog.TAG_FRAGMENT,TAG+"->"+"onAttach ");
+        MLog.d(MLog.TAG_FRAGMENT, TAG + "->" + "onAttach ");
         super.onAttach(activity);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        MLog.d(MLog.TAG_FRAGMENT,TAG+"->"+"onCreate ");
+        MLog.d(MLog.TAG_FRAGMENT, TAG + "->" + "onCreate ");
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true); // 允许fragment修改menu
     }
@@ -67,56 +67,56 @@ public class BaseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        MLog.d(MLog.TAG_FRAGMENT,TAG+"->"+"onCreateView ");
+        MLog.d(MLog.TAG_FRAGMENT, TAG + "->" + "onCreateView ");
         mContainer = container;
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        MLog.d(MLog.TAG_FRAGMENT,TAG+"->"+"onActivityCreated ");
+        MLog.d(MLog.TAG_FRAGMENT, TAG + "->" + "onActivityCreated ");
         super.onActivityCreated(savedInstanceState);
     }
 
     @Override
     public void onStart() {
-        MLog.d(MLog.TAG_FRAGMENT,TAG+"->"+"onStart ");
+        MLog.d(MLog.TAG_FRAGMENT, TAG + "->" + "onStart ");
         super.onStart();
     }
 
     @Override
     public void onResume() {
-        MLog.d(MLog.TAG_FRAGMENT,TAG+"->"+"onResume ");
+        MLog.d(MLog.TAG_FRAGMENT, TAG + "->" + "onResume ");
         super.onResume();
     }
 
     @Override
     public void onPause() {
-        MLog.d(MLog.TAG_FRAGMENT,TAG+"->"+"onPause ");
+        MLog.d(MLog.TAG_FRAGMENT, TAG + "->" + "onPause ");
         super.onPause();
     }
 
     @Override
     public void onStop() {
-        MLog.d(MLog.TAG_FRAGMENT,TAG+"->"+"onStop ");
+        MLog.d(MLog.TAG_FRAGMENT, TAG + "->" + "onStop ");
         super.onStop();
     }
 
     @Override
     public void onDestroyView() {
-        MLog.d(MLog.TAG_FRAGMENT,TAG+"->"+"onDestroyView ");
+        MLog.d(MLog.TAG_FRAGMENT, TAG + "->" + "onDestroyView ");
         super.onDestroyView();
     }
 
     @Override
     public void onDestroy() {
-        MLog.d(MLog.TAG_FRAGMENT,TAG+"->"+"onDestroy ");
+        MLog.d(MLog.TAG_FRAGMENT, TAG + "->" + "onDestroy ");
         super.onDestroy();
     }
 
     @Override
     public void onDetach() {
-        MLog.d(MLog.TAG_FRAGMENT,TAG+"->"+"onDetach ");
+        MLog.d(MLog.TAG_FRAGMENT, TAG + "->" + "onDetach ");
         super.onDetach();
     }
 
