@@ -5,6 +5,7 @@ import com.tuotuo.jamlab.pages.demorealm.model.RealmSimpleModel;
 
 import rx.Observable;
 import rx.Subscriber;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
@@ -17,17 +18,18 @@ public class RealmDemoPresenter implements RealmDemoContract.Presenter {
 
     RealmDemoContract.View mRealmView;
     RealmSimpleModel mReamlModel;
+    Subscription mComplexSubscription;
 
     public RealmDemoPresenter(RealmDemoContract.View realmView) {
         mRealmView = realmView;
-        mRealmView.setPresenter(this);
         mReamlModel = new RealmSimpleModel();
     }
 
-    @Override
-    public void start() {
+    public void work() {
         String status = simpleRealmWork();
-        mRealmView.showStatus(status);
+        if (mRealmView != null) {
+            mRealmView.showStatus(status);
+        }
     }
 
     @Override
@@ -39,7 +41,7 @@ public class RealmDemoPresenter implements RealmDemoContract.Presenter {
     @Override
     public void complexRealmWork() {
         //复杂操作
-        Observable.create(new Observable.OnSubscribe<String>() {
+        mComplexSubscription = Observable.create(new Observable.OnSubscribe<String>() {
             @Override
             public void call(Subscriber<? super String> subscriber) {
                 String info;
@@ -53,9 +55,19 @@ public class RealmDemoPresenter implements RealmDemoContract.Presenter {
                 .subscribe(new Action1<String>() {
                     @Override
                     public void call(String s) {
-                        mRealmView.showStatus(s);
+                        if (mRealmView != null) {
+                            mRealmView.showStatus(s);
+                        }
                     }
                 });
     }
 
+    @Override
+    public void detachView() {
+        // 页面销毁时，注意反注册，防止内存泄露
+        if (mComplexSubscription.isUnsubscribed()) {
+            mComplexSubscription.unsubscribe();
+        }
+        mRealmView = null;
+    }
 }

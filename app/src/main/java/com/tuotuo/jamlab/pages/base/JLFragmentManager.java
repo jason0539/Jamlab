@@ -73,7 +73,7 @@ public class JLFragmentManager extends ContentFragmentManager implements
         switch (type) {
         /* 1x: 地图相关页面 */
             case TYPE_HOME:
-                str = "TYPE_BROWSE_MAP";
+                str = "TYPE_HOME";
                 break;
 
 		/* 无效值 */

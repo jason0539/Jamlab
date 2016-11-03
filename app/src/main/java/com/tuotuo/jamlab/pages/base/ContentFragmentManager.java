@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import com.tuotuo.jamlab.R;
+import com.tuotuo.jamlab.common.utils.MLog;
 
 import java.util.ArrayList;
 
@@ -259,7 +260,7 @@ public class ContentFragmentManager {
     /**
      * 打印fragment栈日志信息（调试用）
      */
-    protected void logFragmentStack() {
+    public void logFragmentStack() {
         String fragmentStackStr = "fragment in stack: [";
         if (mContentFragmentFactory != null) {
             int size = mFragmentInfoStack.size();
@@ -271,7 +272,7 @@ public class ContentFragmentManager {
             }
         }
         fragmentStackStr += "]";
-
+        MLog.d(MLog.TAG_FRAGMENT,TAG+"->"+"logFragmentStack : " + fragmentStackStr);
     }
 
     /**

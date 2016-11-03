@@ -5,6 +5,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.tuotuo.jamlab.R;
+import com.tuotuo.jamlab.common.utils.MLog;
+import com.tuotuo.jamlab.pages.base.BasePresenter;
 import com.tuotuo.jamlab.pages.base.ContentFragment;
 import com.tuotuo.jamlab.pages.demorealm.presenter.RealmDemoPresenter;
 
@@ -23,7 +25,7 @@ public class RealmFragment extends ContentFragment implements RealmDemoContract.
     @BindView(R.id.btn_realm_start)
     Button btnRealmStart;
 
-    RealmDemoContract.Presenter mPresenter;
+    RealmDemoPresenter mRealmDemoPresenter;
 
     @Override
     protected int getLayoutId() {
@@ -31,14 +33,15 @@ public class RealmFragment extends ContentFragment implements RealmDemoContract.
     }
 
     @Override
-    protected void onInitView() {
-        llRealmRoot.removeAllViews();
-        mPresenter = new RealmDemoPresenter(this);
+    protected BasePresenter createPresenter() {
+        mRealmDemoPresenter = new RealmDemoPresenter(this);
+        return mRealmDemoPresenter;
     }
 
     @Override
-    public void setPresenter(RealmDemoContract.Presenter presenter) {
-        mPresenter = presenter;
+    protected void onInitView() {
+        MLog.d(MLog.TAG_FRAGMENT, TAG + "->" + "onInitView ");
+        llRealmRoot.removeAllViews();
     }
 
     @Override
@@ -50,12 +53,7 @@ public class RealmFragment extends ContentFragment implements RealmDemoContract.
 
     @OnClick(R.id.btn_realm_start)
     public void start() {
-        mPresenter.start();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
+        mRealmDemoPresenter.work();
     }
 
 }

@@ -4,6 +4,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.tuotuo.jamlab.R;
+import com.tuotuo.jamlab.pages.base.BasePresenter;
 import com.tuotuo.jamlab.pages.base.ContentFragment;
 import com.tuotuo.jamlab.pages.demoretrofit.entity.Subject;
 import com.tuotuo.jamlab.pages.demoretrofit.http.HttpMethods;
@@ -31,6 +32,11 @@ public class RxRetrofitFragment extends ContentFragment {
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_rxretrofit;
+    }
+
+    @Override
+    protected BasePresenter createPresenter() {
+        return null;
     }
 
     @Override

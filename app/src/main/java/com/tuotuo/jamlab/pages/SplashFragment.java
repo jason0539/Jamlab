@@ -4,6 +4,7 @@ package com.tuotuo.jamlab.pages;
 import android.os.Handler;
 
 import com.tuotuo.jamlab.R;
+import com.tuotuo.jamlab.pages.base.BasePresenter;
 import com.tuotuo.jamlab.pages.base.ContentFragment;
 import com.tuotuo.jamlab.pages.base.JLFragmentManager;
 
@@ -21,6 +22,11 @@ public class SplashFragment extends ContentFragment {
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_splash;
+    }
+
+    @Override
+    protected BasePresenter createPresenter() {
+        return null;
     }
 
     @Override

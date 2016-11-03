@@ -33,6 +33,8 @@ public abstract class ContentFragment extends BaseFragment {
     protected boolean mNeedInitView = false;
     protected boolean mIsDisplayed = false;
 
+    private BasePresenter mBasePresenter;
+
     public ContentFragment() {
         mIsDisplayed = false;
     }
@@ -69,6 +71,7 @@ public abstract class ContentFragment extends BaseFragment {
             mViewCreated = true;
         } else {
             mContentView = inflater.inflate(getLayoutId(), mContainer, false);
+            mBasePresenter = createPresenter();
             ButterKnife.bind(this, mContentView);
             mViewCreated = true;
         }
@@ -103,6 +106,8 @@ public abstract class ContentFragment extends BaseFragment {
 
     protected abstract int getLayoutId();
 
+    protected abstract BasePresenter createPresenter();
+
     protected abstract void onInitView();
 
     @Override
@@ -111,6 +116,14 @@ public abstract class ContentFragment extends BaseFragment {
         mViewCreated = false;
         mNeedInitView = false;
         super.onDestroyView();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        if (mBasePresenter != null) {
+            mBasePresenter.detachView();
+        }
     }
 
     public boolean onBackPressed() {

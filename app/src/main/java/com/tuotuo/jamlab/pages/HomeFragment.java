@@ -3,6 +3,8 @@ package com.tuotuo.jamlab.pages;
 import android.widget.Button;
 
 import com.tuotuo.jamlab.R;
+import com.tuotuo.jamlab.common.utils.MLog;
+import com.tuotuo.jamlab.pages.base.BasePresenter;
 import com.tuotuo.jamlab.pages.base.ContentFragment;
 import com.tuotuo.jamlab.pages.base.JLFragmentManager;
 
@@ -33,8 +35,13 @@ public class HomeFragment extends ContentFragment {
     }
 
     @Override
-    protected void onInitView() {
+    protected BasePresenter createPresenter() {
+        return null;
+    }
 
+    @Override
+    protected void onInitView() {
+        MLog.d(MLog.TAG_FRAGMENT, TAG + "->" + "onInitView ");
     }
 
     @OnClick(R.id.btn_home_network)
