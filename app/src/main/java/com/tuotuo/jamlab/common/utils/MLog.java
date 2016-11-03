@@ -12,6 +12,7 @@ public class MLog {
     private static boolean DEBUG = BuildConfig.DEBUG;
 
     public static final String TAG_TEST_RXJAVA = "TAG_TEST_RXJAVA";
+    public static final String TAG_FRAGMENT = "TAG_FRAGMENT";
 
     public static final void d(String subTag, String msg) {
         if (DEBUG) {
