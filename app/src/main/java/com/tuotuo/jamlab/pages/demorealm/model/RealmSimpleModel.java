@@ -19,6 +19,12 @@ public class RealmSimpleModel {
         realm = Realm.getDefaultInstance();
     }
 
+    public void destroy() {
+        if (realm != null) {
+            realm.close();
+        }
+    }
+
     public String basicCRUD() {
         final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Perform basic Create/Read/Update/Delete (CRUD) operations...");

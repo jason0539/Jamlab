@@ -68,6 +68,7 @@ public class RealmDemoPresenter implements RealmDemoContract.Presenter {
         if (mComplexSubscription.isUnsubscribed()) {
             mComplexSubscription.unsubscribe();
         }
+        mReamlModel.destroy();
         mRealmView = null;
     }
 }

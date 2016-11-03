@@ -53,7 +53,7 @@ public class RealmFragment extends ContentFragment implements RealmDemoContract.
 
     @OnClick(R.id.btn_realm_start)
     public void start() {
-        mRealmDemoPresenter.work();
+        mRealmDemoPresenter.simpleRealmWork();
     }
 
 }
