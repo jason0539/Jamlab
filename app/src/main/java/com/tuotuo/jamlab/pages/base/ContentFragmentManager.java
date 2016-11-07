@@ -265,14 +265,13 @@ public class ContentFragmentManager {
         if (mContentFragmentFactory != null) {
             int size = mFragmentInfoStack.size();
             for (int i = 0; i < size; i++) {
-                fragmentStackStr += mContentFragmentFactory
-                        .toString(mFragmentInfoStack.get(i).mType);
+                fragmentStackStr += mContentFragmentFactory.toString(mFragmentInfoStack.get(i).mType);
                 if (i < mFragmentInfoStack.size() - 1)
                     fragmentStackStr += ", ";
             }
         }
         fragmentStackStr += "]";
-        MLog.d(MLog.TAG_FRAGMENT,TAG+"->"+"logFragmentStack : " + fragmentStackStr);
+        MLog.d(MLog.TAG_FRAGMENT, TAG + "->" + "logFragmentStack : " + fragmentStackStr);
     }
 
     /**

@@ -1,74 +1,80 @@
 package com.tuotuo.jamlab.pages.demorealm.presenter;
 
 import com.tuotuo.jamlab.pages.demorealm.RealmDemoContract;
+import com.tuotuo.jamlab.pages.demorealm.bean.Person;
 import com.tuotuo.jamlab.pages.demorealm.model.RealmSimpleModel;
+import com.tuotuo.jamlab.pages.demorealm.model.RxRealmModel;
 
-import rx.Observable;
-import rx.Subscriber;
 import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by liuzhenhui on 2016/11/1.
  */
-public class RealmDemoPresenter implements RealmDemoContract.Presenter {
+public class RealmDemoPresenter extends RealmDemoContract.Presenter {
     public static final String TAG = RealmDemoPresenter.class.getSimpleName();
 
-    RealmDemoContract.View mRealmView;
     RealmSimpleModel mReamlModel;
-    Subscription mComplexSubscription;
+    RxRealmModel mRxRealmModel;
+
+    Subscription complexSubscription;
+    Subscription rxSubscription;
 
     public RealmDemoPresenter(RealmDemoContract.View realmView) {
-        mRealmView = realmView;
+        attachView(realmView);
         mReamlModel = new RealmSimpleModel();
-    }
-
-    public void work() {
-        String status = simpleRealmWork();
-        if (mRealmView != null) {
-            mRealmView.showStatus(status);
-        }
+        mRxRealmModel = new RxRealmModel();
+        addModel(mReamlModel);
+        addModel(mRxRealmModel);
     }
 
     @Override
-    public String simpleRealmWork() {
+    public void simpleRealmWork() {
         // These operations are small enough that we can generally safely run them on the UI thread.
-        return mReamlModel.basicCRUD() + mReamlModel.basicQuery() + mReamlModel.basicLinkQuery();
+        String status = mReamlModel.basicCRUD() + mReamlModel.basicQuery() + mReamlModel.basicLinkQuery();
+        showStatus(status);
     }
 
     @Override
     public void complexRealmWork() {
-        //复杂操作
-        mComplexSubscription = Observable.create(new Observable.OnSubscribe<String>() {
-            @Override
-            public void call(Subscriber<? super String> subscriber) {
-                String info;
-                info = mReamlModel.complexReadWrite();
-                info += mReamlModel.complexQuery();
-                subscriber.onNext(info);
-                subscriber.onCompleted();
-            }
-        }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+        removeSubscription(complexSubscription);
+        complexSubscription = mReamlModel.workOnComplex()
                 .subscribe(new Action1<String>() {
                     @Override
                     public void call(String s) {
-                        if (mRealmView != null) {
-                            mRealmView.showStatus(s);
-                        }
+                        showStatus(s);
                     }
                 });
+        addSubscription(complexSubscription);
     }
 
     @Override
-    public void detachView() {
-        // 页面销毁时，注意反注册，防止内存泄露
-        if (mComplexSubscription.isUnsubscribed()) {
-            mComplexSubscription.unsubscribe();
+    public void rxWork() {
+        removeSubscription(rxSubscription);
+        rxSubscription = mRxRealmModel.testAsync().subscribe(new Action1<Person>() {
+            @Override
+            public void call(Person person) {
+                showStatus("subscribeOn/async: " + person.getName() + ":" + person.getAge());
+            }
+        }, new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                showError("subscribeOn/async: " + throwable.toString());
+            }
+        });
+        addSubscription(rxSubscription);
+    }
+
+
+    public void showStatus(String msg) {
+        if (getView() != null) {
+            getView().showStatus(msg);
         }
-        mReamlModel.destroy();
-        mRealmView = null;
+    }
+
+    public void showError(String msg) {
+        if (getView() != null) {
+            getView().error(msg);
+        }
     }
 }

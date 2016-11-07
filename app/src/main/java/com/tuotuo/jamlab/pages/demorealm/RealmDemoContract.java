@@ -9,11 +9,16 @@ import com.tuotuo.jamlab.pages.base.BaseView;
 public class RealmDemoContract {
     public interface View extends BaseView<Presenter> {
         void showStatus(String msg);
+
+        void error(String msg);
     }
 
-    public interface Presenter extends BasePresenter {
-        String simpleRealmWork();
+    public static abstract class Presenter extends BasePresenter<View> {
 
-        void complexRealmWork();
+        protected abstract void simpleRealmWork();
+
+        protected abstract void complexRealmWork();
+
+        protected abstract void rxWork();
     }
 }

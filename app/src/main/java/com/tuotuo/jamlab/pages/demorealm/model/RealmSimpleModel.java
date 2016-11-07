@@ -1,5 +1,7 @@
 package com.tuotuo.jamlab.pages.demorealm.model;
 
+import com.tuotuo.jamlab.common.utils.MLog;
+import com.tuotuo.jamlab.pages.base.BaseModel;
 import com.tuotuo.jamlab.pages.demorealm.bean.Cat;
 import com.tuotuo.jamlab.pages.demorealm.bean.Dog;
 import com.tuotuo.jamlab.pages.demorealm.bean.Person;
@@ -7,11 +9,15 @@ import com.tuotuo.jamlab.pages.demorealm.bean.Person;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.Sort;
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by liuzhenhui on 2016/11/1.
  */
-public class RealmSimpleModel {
+public class RealmSimpleModel extends BaseModel {
     public static final String TAG = RealmSimpleModel.class.getSimpleName();
     private Realm realm;
 
@@ -19,7 +25,8 @@ public class RealmSimpleModel {
         realm = Realm.getDefaultInstance();
     }
 
-    public void destroy() {
+    @Override
+    protected void destroy() {
         if (realm != null) {
             realm.close();
         }
@@ -44,6 +51,7 @@ public class RealmSimpleModel {
         final Person person = realm.where(Person.class).findFirst();
         stringBuilder.append(person.getName() + ":" + person.getAge());
 
+        MLog.d(MLog.TAG_REALM, TAG + "->" + "basicCRUD 1");
         // Update person in a transaction
         realm.executeTransaction(new Realm.Transaction() {
             @Override
@@ -51,8 +59,10 @@ public class RealmSimpleModel {
                 person.setName("Senior Person");
                 person.setAge(99);
                 stringBuilder.append(person.getName() + " got older: " + person.getAge());
+                MLog.d(MLog.TAG_REALM, TAG + "->" + "basicCRUD 2");
             }
         });
+        MLog.d(MLog.TAG_REALM, TAG + "->" + "basicCRUD 3");
 
         // Delete all persons
         realm.executeTransaction(new Realm.Transaction() {
@@ -95,6 +105,21 @@ public class RealmSimpleModel {
         return stringBuilder.toString();
     }
 
+
+    public Observable workOnComplex() {
+        return Observable.create(new Observable.OnSubscribe<String>() {
+            @Override
+            public void call(Subscriber<? super String> subscriber) {
+                String info;
+                info = complexReadWrite();
+                info += complexQuery();
+                subscriber.onNext(info);
+                subscriber.onCompleted();
+            }
+        })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
 
     public String complexReadWrite() {
         String status = "\nPerforming complex Read/Write operation...";
