@@ -11,6 +11,7 @@ import com.tuotuo.jamlab.pages.base.JLFragmentManager;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.tuotuo.jamlab.R.id.btn_home_glide;
 import static com.tuotuo.jamlab.R.id.btn_home_realm;
 import static com.tuotuo.jamlab.R.id.btn_home_rxjava;
 
@@ -28,6 +29,8 @@ public class HomeFragment extends ContentFragment {
     Button btnRxJava;
     @BindView(btn_home_realm)
     Button btnRealm;
+    @BindView(R.id.btn_home_glide)
+    Button btnGlide;
 
     @Override
     protected int getLayoutId() {
@@ -57,6 +60,11 @@ public class HomeFragment extends ContentFragment {
     @OnClick(btn_home_realm)
     public void goRealm() {
         getJLFragmentManager().showFragment(JLFragmentManager.TYPE_REALM);
+    }
+
+    @OnClick(btn_home_glide)
+    public void goGlide() {
+        getJLFragmentManager().showFragment(JLFragmentManager.TYPE_GLIDE);
     }
 
 }

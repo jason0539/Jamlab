@@ -2,9 +2,15 @@ package com.tuotuo.jamlab;
 
 import android.app.Application;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.integration.okhttp.OkHttpUrlLoader;
+import com.bumptech.glide.load.model.GlideUrl;
 import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
+import com.squareup.okhttp.OkHttpClient;
 import com.uphyca.stetho_realm.RealmInspectorModulesProvider;
+
+import java.io.InputStream;
 
 import io.realm.Realm;
 
@@ -34,6 +40,9 @@ public class JamApplication extends Application {
                             .enableWebKitInspector(RealmInspectorModulesProvider.builder(this).build())
                             .build());
         }
+        //Realm
         Realm.init(this);
+        //Glide
+        Glide.get(this).register(GlideUrl.class, InputStream.class,new OkHttpUrlLoader.Factory(new OkHttpClient()));
     }
 }

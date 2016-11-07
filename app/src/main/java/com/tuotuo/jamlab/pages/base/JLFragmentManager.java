@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentActivity;
 
 import com.tuotuo.jamlab.pages.HomeFragment;
 import com.tuotuo.jamlab.pages.SplashFragment;
+import com.tuotuo.jamlab.pages.demoglide.DemoGlideFragment;
 import com.tuotuo.jamlab.pages.demorealm.RealmFragment;
 import com.tuotuo.jamlab.pages.demoretrofit.RxRetrofitFragment;
 import com.tuotuo.jamlab.pages.demorxjava.RxJavaDemoFragment;
@@ -26,6 +27,8 @@ public class JLFragmentManager extends ContentFragmentManager implements
     public final static int TYPE_RXRTROFIT = 0x0021;
     public static final int TYPE_RXJAVA = 0x0022;
     public static final int TYPE_REALM = 0x0023;
+    public static final int TYPE_GLIDE = 0x0024;
+    public static final int TYPE_ERROR = 0x0025;
 
     /**
      * 前一个fragment 类型 ，即从哪个fragment跳转过来的
@@ -60,8 +63,11 @@ public class JLFragmentManager extends ContentFragmentManager implements
             case TYPE_REALM:
                 fragment = new RealmFragment();
                 break;
+            case TYPE_GLIDE:
+                fragment = new DemoGlideFragment();
+                break;
             default:
-                fragment = new RxRetrofitFragment();
+                fragment = new ErrorFragment();
                 break;
         }
         return fragment;

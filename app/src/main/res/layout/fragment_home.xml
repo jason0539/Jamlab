@@ -22,4 +22,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Realm Demo"/>
+
+    <Button
+        android:id="@+id/btn_home_glide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Glide Demo"/>
 </LinearLayout>
