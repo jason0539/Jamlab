@@ -50,6 +50,9 @@ public abstract class BasePresenter<T> {
     }
 
     protected T getView() {
+        if (mBaseView == null) {
+            MLog.e(MLog.TAG_MVP, TAG + "->" + " Presenter getView == null, Please call attachView method!");
+        }
         return (T) mBaseView;
     }
 
