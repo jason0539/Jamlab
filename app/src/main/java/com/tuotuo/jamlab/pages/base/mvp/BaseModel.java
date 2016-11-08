@@ -1,4 +1,4 @@
-package com.tuotuo.jamlab.pages.base;
+package com.tuotuo.jamlab.pages.base.mvp;
 
 /**
  * Created by liuzhenhui on 2016/11/4.
@@ -7,5 +7,5 @@ package com.tuotuo.jamlab.pages.base;
 public abstract class BaseModel {
     public static final String TAG = BaseModel.class.getSimpleName();
 
-    protected abstract void destroy();
+    public abstract void destroy();
 }

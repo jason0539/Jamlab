@@ -4,9 +4,9 @@ import android.widget.Button;
 
 import com.tuotuo.jamlab.R;
 import com.tuotuo.jamlab.common.utils.MLog;
-import com.tuotuo.jamlab.pages.base.BasePresenter;
-import com.tuotuo.jamlab.pages.base.ContentFragment;
-import com.tuotuo.jamlab.pages.base.JLFragmentManager;
+import com.tuotuo.jamlab.pages.base.mvp.BasePresenter;
+import com.tuotuo.jamlab.pages.base.fragment.ContentFragment;
+import com.tuotuo.jamlab.pages.base.fragment.JLFragmentManager;
 
 import butterknife.BindView;
 import butterknife.OnClick;

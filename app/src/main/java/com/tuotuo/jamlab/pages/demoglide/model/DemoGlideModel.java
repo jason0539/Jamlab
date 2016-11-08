@@ -1,6 +1,6 @@
 package com.tuotuo.jamlab.pages.demoglide.model;
 
-import com.tuotuo.jamlab.pages.base.BaseModel;
+import com.tuotuo.jamlab.pages.base.mvp.BaseModel;
 
 /**
  * Created by liuzhenhui on 2016/11/7.

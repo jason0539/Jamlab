@@ -1,4 +1,4 @@
-package com.tuotuo.jamlab.pages.base;
+package com.tuotuo.jamlab.pages.base.fragment;
 
 import android.app.Activity;
 import android.content.Context;

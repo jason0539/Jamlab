@@ -1,7 +1,7 @@
 package com.tuotuo.jamlab.pages.demorealm;
 
-import com.tuotuo.jamlab.pages.base.BasePresenter;
-import com.tuotuo.jamlab.pages.base.BaseView;
+import com.tuotuo.jamlab.pages.base.mvp.BasePresenter;
+import com.tuotuo.jamlab.pages.base.mvp.BaseView;
 
 /**
  * Created by liuzhenhui on 2016/11/1.

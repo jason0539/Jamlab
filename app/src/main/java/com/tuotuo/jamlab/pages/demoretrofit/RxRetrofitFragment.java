@@ -4,8 +4,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.tuotuo.jamlab.R;
-import com.tuotuo.jamlab.pages.base.BasePresenter;
-import com.tuotuo.jamlab.pages.base.ContentFragment;
+import com.tuotuo.jamlab.pages.base.mvp.BasePresenter;
+import com.tuotuo.jamlab.pages.base.fragment.ContentFragment;
 import com.tuotuo.jamlab.pages.demoretrofit.entity.Subject;
 import com.tuotuo.jamlab.pages.demoretrofit.http.HttpMethods;
 import com.tuotuo.jamlab.pages.demoretrofit.subscribers.ProgressSubscriber;

@@ -11,8 +11,8 @@ import com.tuotuo.jamlab.R;
 import com.tuotuo.jamlab.common.utils.ImageUtils;
 import com.tuotuo.jamlab.common.utils.MLog;
 import com.tuotuo.jamlab.common.utils.MToast;
-import com.tuotuo.jamlab.pages.base.BasePresenter;
-import com.tuotuo.jamlab.pages.base.ContentFragment;
+import com.tuotuo.jamlab.pages.base.mvp.BasePresenter;
+import com.tuotuo.jamlab.pages.base.fragment.ContentFragment;
 import com.tuotuo.jamlab.pages.demorxjava.bean.Course;
 import com.tuotuo.jamlab.pages.demorxjava.bean.Student;
 

@@ -1,4 +1,4 @@
-package com.tuotuo.jamlab.pages.base;
+package com.tuotuo.jamlab.pages.base.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;

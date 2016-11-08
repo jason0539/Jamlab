@@ -4,9 +4,9 @@ package com.tuotuo.jamlab.pages;
 import android.os.Handler;
 
 import com.tuotuo.jamlab.R;
-import com.tuotuo.jamlab.pages.base.BasePresenter;
-import com.tuotuo.jamlab.pages.base.ContentFragment;
-import com.tuotuo.jamlab.pages.base.JLFragmentManager;
+import com.tuotuo.jamlab.pages.base.mvp.BasePresenter;
+import com.tuotuo.jamlab.pages.base.fragment.ContentFragment;
+import com.tuotuo.jamlab.pages.base.fragment.JLFragmentManager;
 
 
 /**

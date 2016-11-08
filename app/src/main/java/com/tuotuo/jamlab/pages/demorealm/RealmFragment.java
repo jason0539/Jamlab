@@ -7,8 +7,8 @@ import android.widget.TextView;
 import com.tuotuo.jamlab.R;
 import com.tuotuo.jamlab.common.utils.MLog;
 import com.tuotuo.jamlab.common.utils.MToast;
-import com.tuotuo.jamlab.pages.base.BasePresenter;
-import com.tuotuo.jamlab.pages.base.ContentFragment;
+import com.tuotuo.jamlab.pages.base.mvp.BasePresenter;
+import com.tuotuo.jamlab.pages.base.fragment.ContentFragment;
 import com.tuotuo.jamlab.pages.demorealm.presenter.RealmDemoPresenter;
 
 import butterknife.BindView;

@@ -1,4 +1,4 @@
-package com.tuotuo.jamlab.pages.base;
+package com.tuotuo.jamlab.pages.base.mvp;
 
 import com.tuotuo.jamlab.common.utils.MLog;
 

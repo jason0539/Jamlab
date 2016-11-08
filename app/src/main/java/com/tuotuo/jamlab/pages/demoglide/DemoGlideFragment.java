@@ -4,8 +4,8 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.tuotuo.jamlab.R;
-import com.tuotuo.jamlab.pages.base.BasePresenter;
-import com.tuotuo.jamlab.pages.base.ContentFragment;
+import com.tuotuo.jamlab.pages.base.mvp.BasePresenter;
+import com.tuotuo.jamlab.pages.base.fragment.ContentFragment;
 
 import butterknife.BindView;
 

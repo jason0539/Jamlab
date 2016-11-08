@@ -1,4 +1,4 @@
-package com.tuotuo.jamlab.pages.base;
+package com.tuotuo.jamlab.pages.base.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 
 import com.tuotuo.jamlab.common.utils.AnimationFactory;
+import com.tuotuo.jamlab.pages.base.mvp.BasePresenter;
 
 import java.util.Collection;
 import java.util.HashMap;

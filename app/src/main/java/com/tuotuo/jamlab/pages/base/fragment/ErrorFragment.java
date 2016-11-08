@@ -1,6 +1,7 @@
-package com.tuotuo.jamlab.pages.base;
+package com.tuotuo.jamlab.pages.base.fragment;
 
 import com.tuotuo.jamlab.R;
+import com.tuotuo.jamlab.pages.base.mvp.BasePresenter;
 
 /**
  * Created by liuzhenhui on 2016/11/7.

@@ -6,9 +6,9 @@ import android.support.v4.app.FragmentActivity;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.tuotuo.jamlab.pages.base.BaseFragment;
-import com.tuotuo.jamlab.pages.base.ContentFragment;
-import com.tuotuo.jamlab.pages.base.JLFragmentManager;
+import com.tuotuo.jamlab.pages.base.fragment.BaseFragment;
+import com.tuotuo.jamlab.pages.base.fragment.ContentFragment;
+import com.tuotuo.jamlab.pages.base.fragment.JLFragmentManager;
 
 public class MainActivity extends FragmentActivity {
 

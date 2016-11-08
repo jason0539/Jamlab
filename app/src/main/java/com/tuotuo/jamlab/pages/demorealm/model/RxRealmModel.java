@@ -1,6 +1,6 @@
 package com.tuotuo.jamlab.pages.demorealm.model;
 
-import com.tuotuo.jamlab.pages.base.BaseModel;
+import com.tuotuo.jamlab.pages.base.mvp.BaseModel;
 import com.tuotuo.jamlab.pages.demorealm.bean.Person;
 
 import io.realm.Realm;

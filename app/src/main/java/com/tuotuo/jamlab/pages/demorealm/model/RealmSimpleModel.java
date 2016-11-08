@@ -1,7 +1,7 @@
 package com.tuotuo.jamlab.pages.demorealm.model;
 
 import com.tuotuo.jamlab.common.utils.MLog;
-import com.tuotuo.jamlab.pages.base.BaseModel;
+import com.tuotuo.jamlab.pages.base.mvp.BaseModel;
 import com.tuotuo.jamlab.pages.demorealm.bean.Cat;
 import com.tuotuo.jamlab.pages.demorealm.bean.Dog;
 import com.tuotuo.jamlab.pages.demorealm.bean.Person;
