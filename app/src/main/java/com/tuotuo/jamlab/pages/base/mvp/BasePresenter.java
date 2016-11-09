@@ -25,7 +25,7 @@ public abstract class BasePresenter<T> {
      * 注意释放view后，之前发出的耗时操作回调中操作view引起空指针
      * 同时，尽量在该方法中反注册、取消一切耗时监听器（view销毁了，数据取回来已经无意义）
      */
-    protected void detachView() {
+    public void detachView() {
         if (allSubscription != null) {
             for (Subscription subscription : allSubscription) {
                 if (subscription != null && subscription.isUnsubscribed()) {

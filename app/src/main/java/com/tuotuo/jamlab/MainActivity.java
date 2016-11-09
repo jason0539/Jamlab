@@ -1,19 +1,23 @@
 package com.tuotuo.jamlab;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.tuotuo.jamlab.common.utils.MToast;
 import com.tuotuo.jamlab.pages.base.fragment.BaseFragment;
 import com.tuotuo.jamlab.pages.base.fragment.ContentFragment;
 import com.tuotuo.jamlab.pages.base.fragment.JLFragmentManager;
+import com.tuotuo.jamlab.pages.base.progress.ProgressDialogHandler;
 
 public class MainActivity extends FragmentActivity {
 
     private JLFragmentManager mJlFragmentManager;
     private View mForbidTouchView;
+    private ProgressDialog pd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +27,8 @@ public class MainActivity extends FragmentActivity {
 
         mJlFragmentManager = new JLFragmentManager(this);
         BaseFragment.initBeforeAll(this, mJlFragmentManager);
+        MToast.init(getApplicationContext());
+        ProgressDialogHandler.init(this);
 
         mJlFragmentManager.showFragment(JLFragmentManager.TYPE_SPLASH);
     }

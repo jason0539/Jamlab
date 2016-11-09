@@ -1,4 +1,4 @@
-package com.tuotuo.jamlab.pages.demoretrofit.entity;
+package com.tuotuo.jamlab.common.network;
 
 /**
  * Created by liuzhenhui on 2016/10/27.
@@ -13,7 +13,6 @@ public class HttpResult<T> {
 
     //用来模仿Data
     private T subjects;
-
 
     public int getCount() {
         return count;

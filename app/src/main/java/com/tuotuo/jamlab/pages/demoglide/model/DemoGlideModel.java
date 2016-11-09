@@ -9,7 +9,7 @@ public class DemoGlideModel extends BaseModel {
     public static final String TAG = DemoGlideModel.class.getSimpleName();
 
     @Override
-    protected void destroy() {
+    public void destroy() {
 
     }
 }

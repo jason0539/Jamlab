@@ -26,7 +26,7 @@ public class RealmSimpleModel extends BaseModel {
     }
 
     @Override
-    protected void destroy() {
+    public void destroy() {
         if (realm != null) {
             realm.close();
         }

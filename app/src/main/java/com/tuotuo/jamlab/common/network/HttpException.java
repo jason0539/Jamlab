@@ -1,19 +1,19 @@
-package com.tuotuo.jamlab.pages.demoretrofit.http;
+package com.tuotuo.jamlab.common.network;
 
 /**
  * Created by liuzhenhui on 2016/10/27.
  */
-public class ApiException extends RuntimeException {
-    private static final String TAG = ApiException.class.getSimpleName();
+public class HttpException extends RuntimeException {
+    private static final String TAG = HttpException.class.getSimpleName();
 
     public static final int USER_NOT_EXIST = 100;
     public static final int WRONG_PASSWORD = 101;
 
-    public ApiException(int resultCode) {
-        this(getApiExceptionMessage(resultCode));
+    public HttpException(int resultCode) {
+        this(getHttpExceptionMessage(resultCode));
     }
 
-    public ApiException(String detailMessage) {
+    public HttpException(String detailMessage) {
         super(detailMessage);
     }
 
@@ -23,7 +23,7 @@ public class ApiException extends RuntimeException {
      * @param code
      * @return
      */
-    private static String getApiExceptionMessage(int code){
+    private static String getHttpExceptionMessage(int code){
         String message = "";
         switch (code) {
             case USER_NOT_EXIST:

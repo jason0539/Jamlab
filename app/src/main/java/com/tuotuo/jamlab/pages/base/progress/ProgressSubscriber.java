@@ -1,10 +1,6 @@
-package com.tuotuo.jamlab.pages.demoretrofit.subscribers;
+package com.tuotuo.jamlab.pages.base.progress;
 
-import android.content.Context;
-import android.widget.Toast;
-
-import com.tuotuo.jamlab.pages.demoretrofit.progress.ProgressCancelListener;
-import com.tuotuo.jamlab.pages.demoretrofit.progress.ProgressDialogHandler;
+import com.tuotuo.jamlab.common.utils.MToast;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
@@ -19,12 +15,10 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCanc
     private SubscriberOnNextListener mSubscriberOnNextListener;
     private ProgressDialogHandler mProgressDialogHandler;
 
-    private Context context;
 
-    public ProgressSubscriber(SubscriberOnNextListener mSubscriberOnNextListener, Context context) {
+    public ProgressSubscriber(SubscriberOnNextListener mSubscriberOnNextListener) {
         this.mSubscriberOnNextListener = mSubscriberOnNextListener;
-        this.context = context;
-        mProgressDialogHandler = new ProgressDialogHandler(context, this, true);
+        mProgressDialogHandler = new ProgressDialogHandler(this, true);
     }
 
     private void showProgressDialog() {
@@ -55,7 +49,7 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCanc
     @Override
     public void onCompleted() {
         dismissProgressDialog();
-        Toast.makeText(context, "Get Top Movie Completed", Toast.LENGTH_SHORT).show();
+        MToast.show("Get Top Movie Completed");
     }
 
     /**
@@ -67,14 +61,13 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCanc
     @Override
     public void onError(Throwable e) {
         if (e instanceof SocketTimeoutException) {
-            Toast.makeText(context, "网络中断，请检查您的网络状态", Toast.LENGTH_SHORT).show();
+            MToast.show("Network error,check your network");
         } else if (e instanceof ConnectException) {
-            Toast.makeText(context, "网络中断，请检查您的网络状态", Toast.LENGTH_SHORT).show();
+            MToast.show("Network error,check your network");
         } else {
-            Toast.makeText(context, "error:" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            MToast.show("error:" + e.getMessage());
         }
         dismissProgressDialog();
-
     }
 
     /**

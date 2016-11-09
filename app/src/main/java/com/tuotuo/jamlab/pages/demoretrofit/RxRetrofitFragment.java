@@ -4,14 +4,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.tuotuo.jamlab.R;
-import com.tuotuo.jamlab.pages.base.mvp.BasePresenter;
 import com.tuotuo.jamlab.pages.base.fragment.ContentFragment;
-import com.tuotuo.jamlab.pages.demoretrofit.entity.Subject;
-import com.tuotuo.jamlab.pages.demoretrofit.http.HttpMethods;
-import com.tuotuo.jamlab.pages.demoretrofit.subscribers.ProgressSubscriber;
-import com.tuotuo.jamlab.pages.demoretrofit.subscribers.SubscriberOnNextListener;
-
-import java.util.List;
+import com.tuotuo.jamlab.pages.base.mvp.BasePresenter;
+import com.tuotuo.jamlab.pages.demoretrofit.presenter.RxRetrofitDemoPresenter;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -19,7 +14,7 @@ import butterknife.OnClick;
 /**
  * Created by liuzhenhui on 2016/10/27.
  */
-public class RxRetrofitFragment extends ContentFragment {
+public class RxRetrofitFragment extends ContentFragment implements RxRetrofitContract.View {
     public static final String TAG = RxRetrofitFragment.class.getSimpleName();
 
     @BindView(R.id.btn_rxretrofit_click)
@@ -27,7 +22,7 @@ public class RxRetrofitFragment extends ContentFragment {
     @BindView(R.id.tv_rxretrofit_result)
     TextView tvResult;
 
-    private SubscriberOnNextListener getTopMovieOnNext;
+    private RxRetrofitDemoPresenter mPresenter;
 
     @Override
     protected int getLayoutId() {
@@ -36,26 +31,22 @@ public class RxRetrofitFragment extends ContentFragment {
 
     @Override
     protected BasePresenter createPresenter() {
-        return null;
+        mPresenter = new RxRetrofitDemoPresenter(this);
+        return mPresenter;
     }
 
     @Override
     protected void onInitView() {
-        getTopMovieOnNext = new SubscriberOnNextListener<List<Subject>>() {
-            @Override
-            public void onNext(List<Subject> subjects) {
-                tvResult.setText(subjects.toString());
-            }
-        };
+
     }
 
     @OnClick(R.id.btn_rxretrofit_click)
     public void clickTestNet() {
-        getMovie();
+        mPresenter.getTopMovies(0, 10);
     }
 
-    //进行网络请求
-    private void getMovie() {
-        HttpMethods.getInstance().getTopMovie(new ProgressSubscriber(getTopMovieOnNext, getActivity()), 0, 10);
+    @Override
+    public void showMovies(String movie) {
+        tvResult.setText(movie);
     }
 }
