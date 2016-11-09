@@ -13,48 +13,19 @@ import java.util.List;
  * Created by liuzhenhui on 2016/10/31.
  */
 public class MToast {
-
-    // add by Jack: 增加2次网络错误toast的时间间隔判断
-    private static long showNetErrorLastTime = 0;
-    public static final long SHOW_NET_ERROR_TOAST_SPACE = 5000L; // ms
-
-    public static boolean canShowNetError() {
-        boolean can = false;
-        long nowTime = System.currentTimeMillis();
-        if (Math.abs(nowTime - showNetErrorLastTime) > SHOW_NET_ERROR_TOAST_SPACE) {
-            showNetErrorLastTime = nowTime;
-            can = true;
-        } else {
-            can = false;
-        }
-        return can;
-    }
-
+    public static final long SHOW_NET_ERROR_TOAST_SPACE = 5000L;
+    public static Context mContext;
     private static long mShowToastLastTime = 0;
-    private static String mContent = null;
+    private static String mMsg = null;
 
-    public static boolean canShowToast(String content) {
-        boolean can = false;
-        long nowTime = System.currentTimeMillis();
-        if (content != null && mContent != null && content.equals(mContent)) {
-            if (Math.abs(nowTime - mShowToastLastTime) > SHOW_NET_ERROR_TOAST_SPACE) {
-                mShowToastLastTime = nowTime;
-                can = true;
-            } else {
-                can = false;
-            }
-        } else {
-            can = true;
-        }
-        if (can) {
-            mContent = content;
-        }
-        return can;
+    public static final void init(Context context) {
+        mContext = context;
     }
 
-    // end
-    public static void showInCentre(Context context, String message, boolean autoHide) {
-        show(context, message, Gravity.CENTER, autoHide);
+    public static void show(String message) {
+        if (mContext != null) {
+            show(mContext, message);
+        }
     }
 
     public static void show(Context context, String message) {
@@ -84,6 +55,29 @@ public class MToast {
             }
             toast.show();
         }
+    }
+
+    public static boolean canShowToast(String content) {
+        boolean can = false;
+        long nowTime = System.currentTimeMillis();
+        if (content != null && mMsg != null && content.equals(mMsg)) {
+            if (Math.abs(nowTime - mShowToastLastTime) > SHOW_NET_ERROR_TOAST_SPACE) {
+                mShowToastLastTime = nowTime;
+                can = true;
+            } else {
+                can = false;
+            }
+        } else {
+            can = true;
+        }
+        if (can) {
+            mMsg = content;
+        }
+        return can;
+    }
+
+    public static void showInCentre(Context context, String message, boolean autoHide) {
+        show(context, message, Gravity.CENTER, autoHide);
     }
 
     public static void show(Context context, int resId) {
