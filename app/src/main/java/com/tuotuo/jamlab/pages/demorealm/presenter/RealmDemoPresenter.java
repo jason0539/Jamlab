@@ -21,7 +21,7 @@ public class RealmDemoPresenter extends RealmDemoContract.Presenter {
     Subscription rxSubscription;
 
     public RealmDemoPresenter(RealmDemoContract.View realmView) {
-        attachView(realmView);
+        super(realmView);
         mReamlModel = new RealmSimpleModel();
         mRxRealmModel = new RxRealmModel();
         addModel(mReamlModel);

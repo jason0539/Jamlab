@@ -9,6 +9,7 @@ import com.tuotuo.jamlab.pages.demoglide.DemoGlideFragment;
 import com.tuotuo.jamlab.pages.demorealm.RealmFragment;
 import com.tuotuo.jamlab.pages.demoretrofit.RxRetrofitFragment;
 import com.tuotuo.jamlab.pages.demorxjava.RxJavaDemoFragment;
+import com.tuotuo.jamlab.pages.login.LoginFragment;
 
 /**
  * Created by liuzhenhui on 2016/10/27.
@@ -21,14 +22,15 @@ public class JLFragmentManager extends ContentFragmentManager implements
     public final static int TYPE_NONE = 0x0000;
     /* 1x: 页面 */
     public final static int TYPE_HOME = 0x0011;
-    /* 2x: 其他页面 */
-    public final static int TYPE_SPLASH = 0x0041;// splash
     /* 2x: 测试页面 */
     public final static int TYPE_RXRTROFIT = 0x0021;
     public static final int TYPE_RXJAVA = 0x0022;
     public static final int TYPE_REALM = 0x0023;
     public static final int TYPE_GLIDE = 0x0024;
     public static final int TYPE_ERROR = 0x0025;
+    /* 2x: 其他页面 */
+    public final static int TYPE_SPLASH = 0x0041;// splash
+    public final static int TYPE_LOGIN = 0x0042;
 
     /**
      * 前一个fragment 类型 ，即从哪个fragment跳转过来的
@@ -65,6 +67,9 @@ public class JLFragmentManager extends ContentFragmentManager implements
                 break;
             case TYPE_GLIDE:
                 fragment = new DemoGlideFragment();
+                break;
+            case TYPE_LOGIN:
+                fragment = new LoginFragment();
                 break;
             default:
                 fragment = new ErrorFragment();

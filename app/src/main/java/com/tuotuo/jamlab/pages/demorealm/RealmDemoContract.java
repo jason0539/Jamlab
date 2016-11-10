@@ -15,6 +15,10 @@ public class RealmDemoContract {
 
     public static abstract class Presenter extends BasePresenter<View> {
 
+        public Presenter(View view) {
+            super(view);
+        }
+
         protected abstract void simpleRealmWork();
 
         protected abstract void complexRealmWork();

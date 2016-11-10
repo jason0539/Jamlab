@@ -16,6 +16,14 @@ public abstract class BasePresenter<T> {
     LinkedList<BaseModel> allModels = null;
     BaseView mBaseView;
 
+    private BasePresenter() {
+
+    }
+
+    public BasePresenter(T t) {
+        attachView((BaseView) t);
+    }
+
     protected void attachView(BaseView view) {
         mBaseView = view;
     }

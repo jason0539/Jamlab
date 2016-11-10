@@ -3,10 +3,12 @@ package com.tuotuo.jamlab.pages;
 
 import android.os.Handler;
 
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 import com.tuotuo.jamlab.R;
-import com.tuotuo.jamlab.pages.base.mvp.BasePresenter;
 import com.tuotuo.jamlab.pages.base.fragment.ContentFragment;
 import com.tuotuo.jamlab.pages.base.fragment.JLFragmentManager;
+import com.tuotuo.jamlab.pages.base.mvp.BasePresenter;
 
 
 /**
@@ -17,7 +19,7 @@ public class SplashFragment extends ContentFragment {
 
     public static final int GO_HOME_DELAY = 700;
 
-    private Handler mHandler;
+    private static Handler mHandler = new Handler();
 
     @Override
     protected int getLayoutId() {
@@ -31,13 +33,22 @@ public class SplashFragment extends ContentFragment {
 
     @Override
     protected void onInitView() {
-        mHandler = new Handler();
     }
 
     Runnable goHomeRunnable = new Runnable() {
         @Override
         public void run() {
-            getJLFragmentManager().showFragment(JLFragmentManager.TYPE_HOME, null,false);
+            getJLFragmentManager().showFragment(JLFragmentManager.TYPE_HOME, null, false);
+        }
+    };
+
+    Runnable initLibrarySdk = new Runnable() {
+        @Override
+        public void run() {
+            //Facebook
+            FacebookSdk.sdkInitialize(getMainActivity().getApplicationContext());
+            AppEventsLogger.activateApp(getMainActivity().getApplication());
+
         }
     };
 
@@ -45,5 +56,6 @@ public class SplashFragment extends ContentFragment {
     public void onResume() {
         super.onResume();
         mHandler.postDelayed(goHomeRunnable, GO_HOME_DELAY);
+        mHandler.post(initLibrarySdk);
     }
 }

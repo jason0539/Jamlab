@@ -14,6 +14,10 @@ public class RxRetrofitContract {
     }
 
     public static abstract class Presenter extends BasePresenter<View> {
+        public Presenter(View view) {
+            super(view);
+        }
+
         public abstract void getTopMovies(int start, int count);
     }
 }

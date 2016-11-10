@@ -16,7 +16,7 @@ public class RxRetrofitDemoPresenter extends RxRetrofitContract.Presenter {
     private GetMovieModel mGetMovieModel;
 
     public RxRetrofitDemoPresenter(RxRetrofitContract.View view) {
-        attachView(view);
+        super(view);
         mGetMovieModel = new GetMovieModel();
         addModel(mGetMovieModel);
     }
