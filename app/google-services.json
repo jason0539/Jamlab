@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "470303162589",
+    "firebase_url": "https://jamlabdemo.firebaseio.com",
+    "project_id": "jamlabdemo",
+    "storage_bucket": "jamlabdemo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:470303162589:android:b83e05e226397479",
+        "android_client_info": {
+          "package_name": "com.tuotuo.jamlab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "470303162589-7ifmi31fgudk1j1gtisjr5dbfg56s70e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tuotuo.jamlab",
+            "certificate_hash": "A476589E1F03A40BE8FD191DB35CC46B7D8E9973"
+          }
+        },
+        {
+          "client_id": "470303162589-pce1lm893mlv7r1nmm8sairh809t7rb3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBg2kZgQb3z2ZVVvT6bmUfWI9IUTwheqn8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "470303162589-pce1lm893mlv7r1nmm8sairh809t7rb3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
