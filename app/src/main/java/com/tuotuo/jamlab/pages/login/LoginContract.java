@@ -3,7 +3,6 @@ package com.tuotuo.jamlab.pages.login;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 
-import com.facebook.login.widget.LoginButton;
 import com.tuotuo.jamlab.pages.base.mvp.BasePresenter;
 import com.tuotuo.jamlab.pages.base.mvp.BaseView;
 
@@ -26,7 +25,11 @@ public class LoginContract {
             super(view);
         }
 
-        public abstract void loginWithFacebook(LoginButton loginButton, Fragment fragment);
+        public abstract boolean isLogin();
+
+        public abstract void logout();
+
+        public abstract void loginWithFacebook(Fragment fragment);
 
         public abstract void loginWithGoogle();
 
