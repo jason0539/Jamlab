@@ -36,4 +36,19 @@ public class AccountTwitter implements IAccountLogin {
     public String getName() {
         return null;
     }
+
+    @Override
+    public void callbackSuccess() {
+
+    }
+
+    @Override
+    public void callbackFailed() {
+
+    }
+
+    @Override
+    public void callbackCancle() {
+
+    }
 }

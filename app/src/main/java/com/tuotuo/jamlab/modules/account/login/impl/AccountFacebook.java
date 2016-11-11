@@ -19,6 +19,7 @@ import java.util.Set;
 
 /**
  * Created by liuzhenhui on 2016/11/10.
+ * https://developers.facebook.com/docs/facebook-login/android
  */
 
 public class AccountFacebook implements IAccountLogin {
@@ -47,11 +48,12 @@ public class AccountFacebook implements IAccountLogin {
         LoginManager.getInstance().logOut();
     }
 
+
     @Override
     public void login(Fragment fragment, IAccountLoginListener loginListener) {
         iAccountLoginListener = loginListener;
         callbackManager = CallbackManager.Factory.create();
-        LoginManager.getInstance().logInWithReadPermissions(fragment, Arrays.asList("email"));
+        LoginManager.getInstance().logInWithReadPermissions(fragment, Arrays.asList("email", "public_profile"));
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
@@ -70,32 +72,28 @@ public class AccountFacebook implements IAccountLogin {
                 }
                 sbPermission.append("]");
                 MLog.d(MLog.TAG_LOGIN, TAG + "->" + "onSuccess :" + sbPermission.toString());
-                if (iAccountLoginListener != null) {
-                    iAccountLoginListener.success();
-                }
+                callbackSuccess();
             }
 
             @Override
             public void onCancel() {
                 MLog.d(MLog.TAG_LOGIN, TAG + "->" + "onCancel ");
-                if (iAccountLoginListener != null) {
-                    iAccountLoginListener.cancle();
-                }
+                callbackCancle();
             }
 
             @Override
             public void onError(FacebookException exception) {
                 MLog.d(MLog.TAG_LOGIN, TAG + "->" + "onError ");
-                if (iAccountLoginListener != null) {
-                    iAccountLoginListener.fail();
-                }
+                callbackFailed();
             }
         });
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        callbackManager.onActivityResult(requestCode, resultCode, data);
+        if (callbackManager != null) {
+            callbackManager.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     @Override
@@ -106,6 +104,27 @@ public class AccountFacebook implements IAccountLogin {
             return name;
         }
         return "Get Name Failed!";
+    }
+
+    @Override
+    public void callbackSuccess() {
+        if (iAccountLoginListener != null) {
+            iAccountLoginListener.success();
+        }
+    }
+
+    @Override
+    public void callbackFailed() {
+        if (iAccountLoginListener != null) {
+            iAccountLoginListener.fail();
+        }
+    }
+
+    @Override
+    public void callbackCancle() {
+        if (iAccountLoginListener != null) {
+            iAccountLoginListener.cancle();
+        }
     }
 
 }

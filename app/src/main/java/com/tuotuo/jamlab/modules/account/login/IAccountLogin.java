@@ -9,7 +9,7 @@ import android.support.v4.app.Fragment;
 public interface IAccountLogin {
     public static final String TAG = IAccountLogin.class.getSimpleName();
 
-    void login(Fragment fragment,IAccountLoginListener loginListener);
+    void login(Fragment fragment, IAccountLoginListener loginListener);
 
     void onActivityResult(int requestCode, int resultCode, Intent data);
 
@@ -18,4 +18,10 @@ public interface IAccountLogin {
     String getName();
 
     void logout();
+
+    void callbackSuccess();
+
+    void callbackFailed();
+
+    void callbackCancle();
 }

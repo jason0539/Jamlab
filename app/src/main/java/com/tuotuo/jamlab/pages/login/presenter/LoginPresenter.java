@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 
 import com.tuotuo.jamlab.modules.account.login.IAccountLoginListener;
 import com.tuotuo.jamlab.modules.account.login.impl.AccountFacebook;
+import com.tuotuo.jamlab.modules.account.login.impl.AccountGoogle;
 import com.tuotuo.jamlab.pages.login.LoginContract;
 
 /**
@@ -13,23 +14,10 @@ import com.tuotuo.jamlab.pages.login.LoginContract;
 public class LoginPresenter extends LoginContract.Presenter {
     public static final String TAG = LoginPresenter.class.getSimpleName();
 
+    IAccountLoginListener iAccountLoginListener;
     public LoginPresenter(LoginContract.View view) {
         super(view);
-    }
-
-    @Override
-    public boolean isLogin() {
-        return AccountFacebook.getInstance().hasLogin();
-    }
-
-    @Override
-    public void logout() {
-        AccountFacebook.getInstance().logout();
-    }
-
-    @Override
-    public void loginWithFacebook(Fragment fragment) {
-        AccountFacebook.getInstance().login(fragment, new IAccountLoginListener() {
+        iAccountLoginListener = new IAccountLoginListener() {
             @Override
             public void success() {
                 showSuccess();
@@ -44,12 +32,27 @@ public class LoginPresenter extends LoginContract.Presenter {
             public void fail() {
                 showFailed();
             }
-        });
+        };
+    }
+
+    @Override
+    public boolean isLogin() {
+        return AccountFacebook.getInstance().hasLogin();
+    }
+
+    @Override
+    public void logout() {
+        AccountFacebook.getInstance().logout();
+    }
+
+    @Override
+    public void loginWithFacebook(Fragment fragment) {
+        AccountFacebook.getInstance().login(fragment,iAccountLoginListener);
     }
 
     @Override
     public void loginWithGoogle() {
-
+        AccountGoogle.getInstance().login((Fragment) getView(), iAccountLoginListener);
     }
 
     @Override
@@ -65,6 +68,7 @@ public class LoginPresenter extends LoginContract.Presenter {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         AccountFacebook.getInstance().onActivityResult(requestCode, resultCode, data);
+        AccountGoogle.getInstance().onActivityResult(requestCode, resultCode, data);
     }
 
     public void showSuccess() {

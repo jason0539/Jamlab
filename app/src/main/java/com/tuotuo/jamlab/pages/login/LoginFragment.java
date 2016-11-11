@@ -22,6 +22,9 @@ public class LoginFragment extends ContentFragment implements LoginContract.View
     @BindView(R.id.btn_login_facebook)
     Button mBtnFacebookLogin;
 
+    @BindView(R.id.btn_login_google)
+    Button mBtnGoogleLogin;
+
     private LoginPresenter mLoginPresenter;
 
     @Override
@@ -62,6 +65,11 @@ public class LoginFragment extends ContentFragment implements LoginContract.View
         } else {
             mLoginPresenter.loginWithFacebook(this);
         }
+    }
+
+    @OnClick(R.id.btn_login_google)
+    public void loginWithGoogle(){
+        mLoginPresenter.loginWithGoogle();
     }
 
     @Override
