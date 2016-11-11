@@ -10,11 +10,6 @@ import android.view.animation.Animation;
 import com.tuotuo.jamlab.common.utils.AnimationFactory;
 import com.tuotuo.jamlab.pages.base.mvp.BasePresenter;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
 import butterknife.ButterKnife;
 
 /**
@@ -139,55 +134,15 @@ public abstract class ContentFragment extends BaseFragment {
             return 0;
         }
 
-        Map<View, Animation> animMap = animationOut(fragmentType, isBack);
-        if (animMap == null) {
+        Animation anim = animationOut(fragmentType, isBack);
+        if (anim == null) {
             return 0;
         }
 
-        return getAnimationTotalDuration(animMap.values());
+        return AnimationFactory.getAnimationDuration(anim);
     }
 
-    /**
-     * 获取动画的总共时间
-     */
-    protected long getAnimationTotalDuration(Collection<Animation> animList) {
 
-        long duration = 0;
-        if (animList != null) {
-            for (Animation anim : animList) {
-                duration = Math.max(anim.getStartOffset() + anim.getDuration(), duration);
-            }
-        }
-
-        return duration;
-    }
-
-    /**
-     * 构造一个空动画，使其长度等于time
-     */
-    protected Animation createEmptyAnimation(long duration) {
-        Animation animation = new Animation() {
-        };
-        animation.setDuration(duration);
-
-        return animation;
-    }
-
-    /**
-     * 开始animMap中的所有动画
-     */
-    protected void startAnimation(Map<View, Animation> animMap) {
-        if (animMap == null)
-            return;
-
-        Set<View> viewList = animMap.keySet();
-        Animation anim = null;
-        for (View view : viewList) {
-            anim = animMap.get(view);
-            if (anim != null && view != null)
-                view.startAnimation(anim);
-        }
-    }
 
     /**
      * 进入页面的控件动画安排
@@ -196,20 +151,19 @@ public abstract class ContentFragment extends BaseFragment {
      * @param fragmentType fragment类型
      * @return 返回控件动画映射
      */
-    protected Map<View, Animation> animationIn(long lastDuration,
-                                               int fragmentType, boolean isBack) {
-        Map<View, Animation> animMap = new HashMap<View, Animation>();
+    protected Animation animationIn(long lastDuration,
+                                    int fragmentType, boolean isBack) {
+        Animation animation;
         if (jlFragmentManager.isMapContent(fragmentType)) {
-            animMap.put(mContentView, AnimationFactory.getAnimation(mContext,
-                    AnimationFactory.ANIM_POP_IN, lastDuration, 300));
+            animation = AnimationFactory.getAnimation(mContext, AnimationFactory.ANIM_POP_IN, lastDuration, 300);
         } else {
-            if (isBack)
-                animMap.put(mContentView, AnimationFactory.getAnimation(mContext, AnimationFactory.ANIM_LEFT_IN, -1, 300));
-            else
-                animMap.put(mContentView, AnimationFactory.getAnimation(mContext, AnimationFactory.ANIM_RIGHT_IN, -1, 300));
-
+            if (isBack) {
+                animation = AnimationFactory.getAnimation(mContext, AnimationFactory.ANIM_LEFT_IN, -1, 300);
+            } else {
+                animation = AnimationFactory.getAnimation(mContext, AnimationFactory.ANIM_RIGHT_IN, -1, 300);
+            }
         }
-        return animMap;
+        return animation;
     }
 
     /**
@@ -218,18 +172,18 @@ public abstract class ContentFragment extends BaseFragment {
      * @param fragmentType fragment类型
      * @return 返回控件动画映射
      */
-    protected Map<View, Animation> animationOut(int fragmentType, boolean isBack) {
-        Map<View, Animation> animMap = new HashMap<View, Animation>();
+    protected Animation animationOut(int fragmentType, boolean isBack) {
+        Animation animation;
         if (jlFragmentManager.isMapContent(fragmentType)) {
-            animMap.put(mContentView, AnimationFactory.getAnimation(mContext, AnimationFactory.ANIM_POP_OUT, -1, 300));
+            animation = AnimationFactory.getAnimation(mContext, AnimationFactory.ANIM_POP_OUT, -1, 300);
         } else {
             if (isBack) {
-                animMap.put(mContentView, AnimationFactory.getAnimation(mContext, AnimationFactory.ANIM_RIGHT_OUT, -1, 300));
+                animation = AnimationFactory.getAnimation(mContext, AnimationFactory.ANIM_RIGHT_OUT, -1, 300);
             } else {
-                animMap.put(mContentView, AnimationFactory.getAnimation(mContext, AnimationFactory.ANIM_LEFT_OUT, -1, 300));
+                animation = AnimationFactory.getAnimation(mContext, AnimationFactory.ANIM_LEFT_OUT, -1, 300);
             }
         }
-        return animMap;
+        return animation;
     }
 
     @Override
@@ -241,7 +195,6 @@ public abstract class ContentFragment extends BaseFragment {
             return null;
         }
 
-        Map<View, Animation> animMap = null;
         Animation anim = null;
 
         final int fragmentType = nextAnim; // trick：利用nextAnim代表fragment类型
@@ -249,12 +202,7 @@ public abstract class ContentFragment extends BaseFragment {
 
         if (enter) {
             long lastDuration = isBack ? transit & 0x00007fff : transit; // trick：利用transit代表旧页面动画时长
-            animMap = animationIn(lastDuration, fragmentType, isBack);
-            long duration = lastDuration;
-            if (animMap != null && animMap.size() > 0)
-                duration = Math.max(
-                        getAnimationTotalDuration(animMap.values()), duration);
-            anim = createEmptyAnimation(duration);
+            anim = animationIn(lastDuration, fragmentType, isBack);
             anim.setAnimationListener(new Animation.AnimationListener() {
 
                 @Override
@@ -275,16 +223,10 @@ public abstract class ContentFragment extends BaseFragment {
             });
         } else {
             beforeAnimationOut(fragmentType);
-            animMap = animationOut(fragmentType, isBack);
-            long duration = 0;
-            if (animMap != null && animMap.size() > 0)
-                duration = Math.max(
-                        getAnimationTotalDuration(animMap.values()), duration);
-            anim = createEmptyAnimation(duration);
+            anim = animationOut(fragmentType, isBack);
         }
 
         mActivity.forbidTouch(true); // 若进入动画先于退出动画，且进入动画为0时长动画，则可能引起禁止点击不消失的bug
-        startAnimation(animMap);
 
         return anim;
     }

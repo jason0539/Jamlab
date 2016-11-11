@@ -1,10 +1,15 @@
 package com.tuotuo.jamlab.common.utils;
 
 import android.content.Context;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.tuotuo.jamlab.R;
+
+import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by liuzhenhui on 2016/10/27.
@@ -40,10 +45,8 @@ public class AnimationFactory {
     /**
      * 根据类型获取动画
      *
-     * @param context
-     *            上下文
-     * @param type
-     *            动画类型
+     * @param context 上下文
+     * @param type    动画类型
      * @return 动画
      */
     public static Animation getAnimation(Context context, int type) {
@@ -110,7 +113,8 @@ public class AnimationFactory {
                 anim = AnimationUtils.loadAnimation(context, R.anim.eclipse_up);
                 break;
             default:
-                anim = new Animation() {};
+                anim = new Animation() {
+                };
                 break;
         }
 
@@ -121,14 +125,10 @@ public class AnimationFactory {
     /**
      * 根据类型获取动画，并设置起始时间和持续时长
      *
-     * @param context
-     *            上下文
-     * @param type
-     *            动画类型
-     * @param startOffset
-     *            起始时间，负数为无效值
-     * @param duration
-     *            持续时长，负数为无效值
+     * @param context     上下文
+     * @param type        动画类型
+     * @param startOffset 起始时间，负数为无效值
+     * @param duration    持续时长，负数为无效值
      * @return 动画
      */
     public static Animation getAnimation(Context context, int type,
@@ -142,5 +142,57 @@ public class AnimationFactory {
             anim.setDuration(duration);
 
         return anim;
+    }
+
+    public static long getAnimationDuration(Animation animation) {
+        long duration = 0;
+        if (animation != null) {
+            duration = animation.getStartOffset() + animation.getDuration();
+        }
+        return duration;
+    }
+
+    /**
+     * 获取动画的总共时间
+     */
+    protected long getAnimationTotalDuration(Collection<Animation> animList) {
+
+        long duration = 0;
+        if (animList != null) {
+            for (Animation anim : animList) {
+                duration = Math.max(anim.getStartOffset() + anim.getDuration(), duration);
+            }
+        }
+
+        return duration;
+    }
+
+
+
+    /**
+     * 构造一个空动画，使其长度等于time
+     */
+    protected Animation createEmptyAnimation(long duration) {
+        Animation animation = new Animation() {
+        };
+        animation.setDuration(duration);
+
+        return animation;
+    }
+
+    /**
+     * 开始animMap中的所有动画
+     */
+    protected void startAnimation(Map<View, Animation> animMap) {
+        if (animMap == null)
+            return;
+
+        Set<View> viewList = animMap.keySet();
+        Animation anim = null;
+        for (View view : viewList) {
+            anim = animMap.get(view);
+            if (anim != null && view != null)
+                view.startAnimation(anim);
+        }
     }
 }
